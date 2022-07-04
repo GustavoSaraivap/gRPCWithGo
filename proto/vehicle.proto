@@ -1,0 +1,19 @@
+syntax = "proto3";
+package vehicle;
+option go_package = "./vehicle";
+
+message Vehicle {
+    string id = 1;  
+    string brand = 2;
+    string vin = 3;
+}
+
+message VehicleResultStream {
+    string status = 1;
+    Vehicle vehicle = 2;
+}
+
+service VehicleService {
+    rpc AddVehicle (Vehicle) returns (Vehicle);
+    rpc AddVehicleVerbose (Vehicle) returns (stream VehicleResultStream);
+}
